@@ -27,13 +27,14 @@ var init = function (window) {
 
         // TODO 2 : Create a function that draws a circle 
 
+       
         function drawCircle() {
-            draw.randomCircleInArea(canvas, true, true, '#999', 2); 
-            physikz.addRemoveVelocity(circle, canvas);
+            //code to draw a circle
+            circle = draw.randomCircleInArea(canvas, true, true, '#999', 2);
+            physikz.addRandomVelocity(circle, canvas, 20, 20);
             view.addChild(circle);
             circles.push(circle);
-        }
-        
+            }
 
         // TODO 3 / 7 : Call the drawCircle() function 
         for (var loopsCompleted = 0; loopsCompleted < 100; loopsCompleted++) {
@@ -59,9 +60,9 @@ var init = function (window) {
 
             // TODO 9 : Iterate over the array
            for (var i = 0; i < circles.length; i++) {
-            var eachCricle = circles[i];
+            var eachCircle = circles[i];
             physikz.updatePosition(eachCircle);
-            game.checkCirclePosition(eachCricle);
+            game.checkCirclePosition(eachCircle);
            }
             
         }
@@ -85,7 +86,7 @@ var init = function (window) {
             if (circle.y > canvas.width) {
                 circle.y = 0;
             }
-            if (circle.y = 0 ) {
+            if (circle.y < 0 ) {
                 circle.y = canvas.height;
             }
 
