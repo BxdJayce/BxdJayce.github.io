@@ -39,7 +39,10 @@ function runProgram() {
   On each "tick" of the timer, a new frame is dynamically drawn using JavaScript
   by calling this function and executing the code inside.
   */
-  function newFrame() {}
+  function newFrame() {
+    repositionGameItem();
+    redrawGameItem();
+  }
 
   /* 
   Called in response to events.
@@ -47,15 +50,19 @@ function runProgram() {
   function handleKeyDown(event) {
     if (event.which === KEY.DOWN) {
       console.log("down pressed");
+      walker.speedY = -5;
     }
     if (event.which === KEY.UP) {
       console.log("up pressed");
+      walker.speedY = 5;
     }
     if (event.which === KEY.RIGHT) {
       console.log("right pressed");
+      walker.speedX = 5;
     }
     if (event.which === KEY.LEFT) {
       console.log("left pressed");
+      walker.speedX = -5;
     }
     if (event.which === KEY.ENTER) {
       console.log("enter pressed");
@@ -65,8 +72,17 @@ function runProgram() {
   ////////////////////////////////////////////////////////////////////////////////
   ////////////////////////// HELPER FUNCTIONS ////////////////////////////////////
   ////////////////////////////////////////////////////////////////////////////////
-  function repositionGameItem() {}
-  function redrawGameItem() {}
+  function repositionGameItem() {
+    positionX += speedX; // update the position of the box along the x-axis
+    positionY += speedY; // update the position of the box along the y-axis
+  }
+  
+  function redrawGameItem() {
+    $("#box").css("left", positionX); 
+    $("box").css("top", positionY);
+    
+  }
+    
 
   function endGame() {
     // stop the interval timer
