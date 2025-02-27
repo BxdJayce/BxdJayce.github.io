@@ -1,18 +1,18 @@
 
 body {
-  background-color: darkgreen;
+  background-color: rgb(95, 193, 243);
 }
 
 #board {
   width: 440px;
   height: 440px;
-  border: 1px solid white;
-  background-color: black;
+  border: 1px solid #0c0505;
+  background-color: rgb(255, 255, 255);
   position: relative;
 }
 
 #walker {
-  background-color: teal;
+  background-color: rgba(232, 12, 207, 0.553);
   width: 50px;
   height: 50px;
   position: absolute;
