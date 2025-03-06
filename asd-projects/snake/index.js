@@ -93,10 +93,10 @@ function checkForNewDirection(event) {
     snake.head.direction = "down";
   }
   else if(activeKey === KEY.UP) {
-    snake.head.direction = "up"
+    snake.head.direction = "up";
   }
   else if(activeKey ===KEY.RIGHT) {
-    snake.head.direction = "right"
+    snake.head.direction = "right";
   }
   // FILL IN THE REST
 
@@ -178,19 +178,15 @@ if (snake.head.column < 0) {
 }
 
 function hasCollidedWithApple() {
- if(apple.row === snake.head.row && apple.column === snake.head.column) {
-  return true;
- }
-
-
-
-/* 
+ /* 
   TODO 9: Should return true if the snake's head has collided with the apple, 
   false otherwise
   
   HINT: Both the apple and the snake's head are aware of their own row and column
   */
-
+  if(apple.row === snake.head.row && apple.column === snake.head.column) {
+    return true;
+   }
   return false;
 }
 
@@ -244,9 +240,11 @@ function hasCollidedWithSnake() {
   head and each part of the snake's body also knows its own row and column.
   
   */
-if(snake.head === snake.body.length + 1) {
-  return true;
+for(var s = 1; b < snake.body.length; s = s + 1) {
+  if(snake.head.row === snake.body[s].row && snake.head.column === snake.body[s].column)
+    return true;
 }
+  
   return false;
 }
 
@@ -363,6 +361,12 @@ function getRandomAvailablePosition() {
     not occupied by a snakeSquare in the snake's body. If it is then set 
     spaceIsAvailable to false so that a new position is generated.
     */
+   for(var s = 0; s < snake.body.length; s = s + 1) {
+    if(snake.body[s].row === randomPosition.row && snake.body[s].column === randomPosition.column) {
+      spaceIsAvailable = false; 
+      break; 
+    }
+   }
   }
 
   return randomPosition;
